@@ -4,6 +4,7 @@
 
 struct Rating {
     Rating(int, int);
+    void resize();
     int size;
     char **surnames;
     int **subjects;
