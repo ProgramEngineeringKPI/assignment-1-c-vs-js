@@ -11,14 +11,11 @@ Rating* read_file(char *fileName) {
         return NULL;
     }
     else {
-        fgets(buffer, 125, pFile);
-        int size; sscanf(buffer, "%d", &size);
+        Rating* CurRating = new Rating(10, 64);
 
-        Rating* CurRating = new Rating(size, 64);
-
-        for (int i = 0 ; i < size ; i++) {
-            fgets(buffer, 125, pFile);
-            parse_buffer(buffer, CurRating, i);
+        int i = 0;
+        while (fgets(buffer, 125, pFile)) {
+            parse_buffer(buffer, CurRating, i++);
         }
 
         fclose(pFile);
@@ -27,6 +24,8 @@ Rating* read_file(char *fileName) {
 }
 
 void parse_buffer(char* buffer, Rating* CurRating, int curIndex) {
+    if (CurRating->size == curIndex) CurRating->resize();
+
     char * ptr1 = strtok(buffer, ",");
     char * ptr2 = ptr1;
 

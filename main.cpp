@@ -7,12 +7,10 @@
 char* inputFileName = const_cast<char *>("students.csv");
 char* outputFileName = const_cast<char *>("rating.csv");
 
-int countOfBestStudents;
-
 int main() {
     Rating* Current = read_file(inputFileName);
 
-    countOfBestStudents = get_top_of_students(Current);
+    int countOfBestStudents = get_top_of_students(Current);
 
     print_rating(Current, countOfBestStudents);
 
